@@ -1,38 +1,33 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { FaAsterisk } from "react-icons/fa";
 import "./App.css";
+import { PasswordInput, RuleBlock } from "./components";
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
-		<>
-			<div>
-				<a href="https://vitejs.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
+		<main className="p-4">
+			<div className="mx-auto max-w-md py-16">
+				<h1 className="mb-12 text-center text-3xl">
+					<FaAsterisk className="inline align-bottom" /> The Password
+					Game
+				</h1>
+
+				<PasswordInput classname="mb-8" />
+
+				<ul className="flex flex-col gap-6">
+					<li>
+						<RuleBlock isFulfilled={true} ruleCode={12}>
+							Your password must include a number.
+						</RuleBlock>
+					</li>
+
+					<li>
+						<RuleBlock isFulfilled={false} ruleCode={12}>
+							Your password must include a number.
+						</RuleBlock>
+					</li>
+				</ul>
 			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
-		</>
+		</main>
 	);
 }
 
