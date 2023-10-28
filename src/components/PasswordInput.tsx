@@ -1,11 +1,12 @@
 import clsx from "clsx";
-import { useAtom } from "jotai";
-import { passwordAtom } from "@/atoms";
+import { useAtomValue, useSetAtom } from "jotai";
+import { debouncedPasswordAtom, passwordAtom } from "@/atoms";
 
 type PasswordInputProps = { classname?: string };
 
 export function PasswordInput({ classname }: PasswordInputProps) {
-	const [password, setPassword] = useAtom(passwordAtom);
+	const password = useAtomValue(passwordAtom);
+	const setPassword = useSetAtom(debouncedPasswordAtom);
 
 	return (
 		<form

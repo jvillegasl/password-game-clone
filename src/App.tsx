@@ -1,8 +1,20 @@
 import { FaAsterisk } from "react-icons/fa";
 import "./App.css";
 import { PasswordInput, RuleBlock } from "./components";
+import { useAtom } from "jotai";
+import { activeRulesAtom } from "./atoms";
+import { useMemo } from "react";
+import { useActiveRules } from "./hooks";
 
 function App() {
+	const [activeRules] = useAtom(activeRulesAtom);
+	const sortedActiveRules = useMemo(
+		() => [...activeRules].reverse(),
+		[activeRules],
+	);
+
+	useActiveRules();
+
 	return (
 		<main className="p-4">
 			<div className="mx-auto max-w-md py-16">
@@ -14,17 +26,11 @@ function App() {
 				<PasswordInput classname="mb-8" />
 
 				<ul className="flex flex-col gap-6">
-					<li>
-						<RuleBlock isFulfilled={true} ruleCode={12}>
-							Your password must include a number.
-						</RuleBlock>
-					</li>
-
-					<li>
-						<RuleBlock isFulfilled={false} ruleCode={12}>
-							Your password must include a number.
-						</RuleBlock>
-					</li>
+					{sortedActiveRules.map((rule, i) => (
+						<li key={i}>
+							<RuleBlock rule={rule} />
+						</li>
+					))}
 				</ul>
 			</div>
 		</main>
