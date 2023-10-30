@@ -6,4 +6,4 @@ export const activeRulesAtom = atom<RuleWithStatus[]>([]);
 export const {
 	currentValueAtom: passwordAtom,
 	debouncedValueAtom: debouncedPasswordAtom,
-} = atomWithDebounce<string>("");
+} = atomWithDebounce<string>("", 250);

@@ -4,7 +4,7 @@ export function generateCaptcha(text: string) {
 	const canvas = new fabric.Canvas("captchaCanvas");
 
 	canvas.width = 200;
-	canvas.height = 80;
+	canvas.height = 50;
 
 	let left = 20;
 
@@ -12,8 +12,8 @@ export function generateCaptcha(text: string) {
 		const char = text[i];
 		const canvasText = new fabric.Text(char, {
 			left: left,
-			top: 30,
-			fontSize: 30,
+			top: 10,
+			fontSize: 25,
 			fontFamily: "Arial",
 			fill: "black",
 		});
@@ -24,7 +24,7 @@ export function generateCaptcha(text: string) {
 
 		canvas.add(canvasText);
 
-		left += (canvasText.width ?? 0) * (canvasText.scaleX ?? 0) + 5; // Espaciado entre caracteres
+		left += (canvasText.width ?? 0) * (canvasText.scaleX ?? 0) + 10;
 	}
 
 	return canvas.toDataURL();

@@ -75,17 +75,22 @@ export function useActiveRules() {
 	useEffect(() => {
 		const currentActiveRules = activeRulesRef.current;
 
-		if (currentActiveRules.length === activeRules.length) return;
-
-		const newRules = activeRules.filter(
-			(t) => !currentActiveRules.some((v) => v.id === t.id),
+		const diffRules = activeRules.filter(
+			(rule) =>
+				!currentActiveRules.some(
+					(currentRule) => currentRule.id === rule.id,
+				) ||
+				currentActiveRules.some(
+					(currentRule) =>
+						currentRule.id === rule.id && currentRule.v !== rule.v,
+				),
 		);
 
 		activeRulesRef.current = activeRules;
 
-		if (!newRules.length) return;
+		if (!diffRules.length) return;
 
-		validateRules(password, newRules, setActiveRules);
+		validateRules(password, diffRules, setActiveRules);
 	}, [activeRules, password, setActiveRules]);
 
 	// Validate rules when password changes

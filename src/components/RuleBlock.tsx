@@ -1,12 +1,61 @@
 import clsx from "clsx";
-import { FaCheck, FaTimes } from "react-icons/fa";
+import { FaCheck, FaTimes, FaSyncAlt } from "react-icons/fa";
+import { useAtom } from "jotai";
 import { RuleWithStatus } from "@/types";
+import { activeRulesAtom } from "@/atoms";
 
 type RuleBlockProps = {
 	rule: RuleWithStatus;
 };
 
 export function RuleBlock({ rule }: RuleBlockProps) {
+	const setActiveRules = useAtom(activeRulesAtom)[1];
+
+	function getContent() {
+		switch (rule.type) {
+			case "simple":
+				if (!rule.images) return;
+
+				return (
+					<div className="mt-4 flex flex-row justify-center gap-8">
+						{rule.images.map((image, i) => (
+							<img key={i} src={image} className="h-20 w-20" />
+						))}
+					</div>
+				);
+			case "captcha": {
+				const setter = (
+					captchaText: string,
+					captchaImage: string,
+					v: number,
+				) =>
+					setActiveRules((prev) =>
+						prev.map((t) => {
+							if (t.id === rule.id) {
+								return { ...t, captchaText, captchaImage, v };
+							}
+
+							return t;
+						}),
+					);
+
+				return (
+					<div className="mt-4 flex flex-row justify-center gap-4">
+						<img
+							src={rule.captchaImage}
+							className="rounded-md border-[1px] border-solid border-black"
+							alt="CAPTCHA"
+						/>
+
+						<button onClick={() => rule.refreshCaptcha(setter)}>
+							<FaSyncAlt />
+						</button>
+					</div>
+				);
+			}
+		}
+	}
+
 	return (
 		<div
 			className={clsx(
@@ -29,7 +78,6 @@ export function RuleBlock({ rule }: RuleBlockProps) {
 				)}
 
 				<span className="text-lg">
-					{" "}
 					Rule {rule.id} {JSON.stringify(rule.isFulfilled)}
 				</span>
 			</div>
@@ -40,7 +88,9 @@ export function RuleBlock({ rule }: RuleBlockProps) {
 					rule.isFulfilled ? "bg-green-100" : "bg-red-100",
 				)}
 			>
-				{rule.description}
+				<span>{rule.description}</span>
+
+				{getContent()}
 			</div>
 		</div>
 	);

@@ -1,15 +1,35 @@
-type RuleValidateArguments = {
+type WithStatus<T> = T & {
+	isFulfilled: boolean;
+};
+
+type RuleValidatorArguments = {
 	password: string;
 };
 
-type RuleValidate = (args: RuleValidateArguments) => boolean;
+type RuleValidator = (args: RuleValidatorArguments) => boolean;
 
-export type Rule = {
+type SimpleRule = {
+	type: "simple";
 	id: number;
+	v: number;
 	description: string;
-	validate: RuleValidate;
+	images?: string[];
+	validate: RuleValidator;
 };
 
-export type RuleWithStatus = Rule & {
-	isFulfilled: boolean;
+type CaptchaRule = {
+	type: "captcha";
+	id: number;
+	v: number;
+	description: string;
+	captchaText: string;
+	captchaImage: string;
+	validate: RuleValidator;
+	refreshCaptcha: (
+		setter: (text: string, image: string, v: number) => void,
+	) => void;
 };
+
+export type Rule = SimpleRule | CaptchaRule;
+
+export type RuleWithStatus = WithStatus<Rule>;
