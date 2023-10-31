@@ -1,18 +1,9 @@
 import { FaAsterisk } from "react-icons/fa";
 import "./App.css";
-import { PasswordInput, RuleBlock } from "./components";
-import { useAtom } from "jotai";
-import { activeRulesAtom } from "./atoms";
-import { useMemo } from "react";
+import { PasswordInput, RulesList } from "./components";
 import { useActiveRules } from "./hooks";
 
 function App() {
-	const [activeRules] = useAtom(activeRulesAtom);
-	const sortedActiveRules = useMemo(
-		() => [...activeRules].reverse(),
-		[activeRules],
-	);
-
 	useActiveRules();
 
 	return (
@@ -23,15 +14,9 @@ function App() {
 					Game
 				</h1>
 
-				<PasswordInput classname="mb-8" />
+				<PasswordInput className="mb-8" />
 
-				<ul className="flex flex-col gap-6">
-					{sortedActiveRules.map((rule, i) => (
-						<li key={i}>
-							<RuleBlock rule={rule} />
-						</li>
-					))}
-				</ul>
+				<RulesList />
 			</div>
 		</main>
 	);

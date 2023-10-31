@@ -2,15 +2,15 @@ import clsx from "clsx";
 import { useAtomValue, useSetAtom } from "jotai";
 import { debouncedPasswordAtom, passwordAtom } from "@/atoms";
 
-type PasswordInputProps = { classname?: string };
+type PasswordInputProps = { className?: string };
 
-export function PasswordInput({ classname }: PasswordInputProps) {
+export function PasswordInput({ className }: PasswordInputProps) {
 	const password = useAtomValue(passwordAtom);
 	const setPassword = useSetAtom(debouncedPasswordAtom);
 
 	return (
 		<form
-			className={clsx("grid", classname)}
+			className={clsx("grid", className)}
 			onSubmit={(e) => e.preventDefault()}
 		>
 			<label className="mb-2 text-lg" htmlFor="passwordInput">

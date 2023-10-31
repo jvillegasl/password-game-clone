@@ -59,7 +59,7 @@ export function RuleBlock({ rule }: RuleBlockProps) {
 	return (
 		<div
 			className={clsx(
-				"overflow-hidden rounded-lg border-[1px] border-solid shadow-lg",
+				"overflow-hidden rounded-lg border-[1px] border-solid shadow-lg transition-[colors,shadow] duration-500 ease-in-out",
 				rule.isFulfilled
 					? "border-green-700 shadow-green-200"
 					: "border-red-500 shadow-red-200",
@@ -67,7 +67,7 @@ export function RuleBlock({ rule }: RuleBlockProps) {
 		>
 			<div
 				className={clsx(
-					"flex items-center gap-2 px-4 py-1",
+					"flex items-center gap-2 px-4 py-1 transition-colors duration-500 ease-in-out",
 					rule.isFulfilled ? "bg-green-300" : "bg-red-300",
 				)}
 			>
@@ -77,9 +77,7 @@ export function RuleBlock({ rule }: RuleBlockProps) {
 					<FaTimes className="text-red-600" />
 				)}
 
-				<span className="text-lg">
-					Rule {rule.id} {JSON.stringify(rule.isFulfilled)}
-				</span>
+				<span className="text-lg">Rule {rule.id}</span>
 			</div>
 
 			<div
