@@ -24,9 +24,13 @@ export function RulesList() {
 
 	return (
 		<TransitionGroup component="ul" className="flex flex-col gap-6">
-			{sortedActiveRules.map((rule, i) => (
-				<CSSTransition timeout={500} classNames="rule-item" key={i}>
-					<li key={i}>
+			{sortedActiveRules.map((rule) => (
+				<CSSTransition
+					timeout={500}
+					classNames="rule-item"
+					key={rule.id}
+				>
+					<li>
 						<RuleBlock rule={rule} />
 					</li>
 				</CSSTransition>
