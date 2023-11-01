@@ -8,6 +8,9 @@ export function useAutosizeTextarea(
 		const textareaEl = textareaRef.current;
 
 		if (!textareaEl) return;
+
+		textareaEl.style.height = "0px";
+
 		const computedStyle = getComputedStyle(textareaEl);
 		const borderYWidth =
 			parseFloat(computedStyle.borderTopWidth) +
