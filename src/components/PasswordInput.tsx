@@ -1,12 +1,18 @@
 import clsx from "clsx";
 import { useAtomValue, useSetAtom } from "jotai";
 import { debouncedPasswordAtom, passwordAtom } from "@/atoms";
+import { useRef } from "react";
+import { useAutosizeTextarea } from "@/hooks";
 
 type PasswordInputProps = { className?: string };
 
 export function PasswordInput({ className }: PasswordInputProps) {
 	const password = useAtomValue(passwordAtom);
 	const setPassword = useSetAtom(debouncedPasswordAtom);
+
+	const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+	useAutosizeTextarea(textareaRef, password);
 
 	return (
 		<form
@@ -18,12 +24,13 @@ export function PasswordInput({ className }: PasswordInputProps) {
 			</label>
 
 			<div className="relative">
-				<input
+				<textarea
+					ref={textareaRef}
 					id="passwordInput"
-					className="w-full rounded-lg border-[1px] border-solid border-gray-500 p-4 text-3xl outline-none transition-[border] focus-visible:border-black"
-					type="text"
+					className="w-full resize-none overflow-hidden rounded-lg border-[1px] border-solid border-gray-500 p-4 text-3xl leading-none outline-none transition-[border] focus-visible:border-black"
 					value={password}
 					autoComplete="off"
+					rows={1}
 					onChange={(e) => setPassword(e.currentTarget.value)}
 				/>
 
