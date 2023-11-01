@@ -1,27 +1,79 @@
-# React + TypeScript + Vite
+<a href="https://jvillegasl.github.io/password-game-clone/"><img src="https://img.shields.io/badge/demo-online-green.svg?logo=github"></a>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# The Password Game Clone
 
-Currently, two official plugins are available:
+Clone of the [Password Game](https://neal.fun/password-game/) with React + Vite + Typescript.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requirements
 
-## Expanding the ESLint configuration
+-   Node >= 18.0.0
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Built with
 
-- Configure the top-level `parserOptions` property like this:
+-   [![React][React]][React-url]
+-   [![Vite][Vite]][Vite-url]
+-   [![Typescript][Typescript]][Typescript-url]
+-   [![Tailwind][Tailwind]][Tailwind-url]
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+## Deploy Locally
+
+1. Clone this repository to your local machine:
+
+```bash
+git clone https://github.com/jvillegasl/password-game-clone.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Navigate to the project directory:
+
+```bash
+cd password-game-clone
+```
+
+3. Install the dependencies:
+
+```bash
+npm install
+```
+
+4. Deploy the app on development mode:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+
+## Socials
+
+-   [![Gmail][gmail-shield]][gmail-url]
+-   [![LinkedIn][linkedin-shield]][linkedin-url]
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[gmail-shield]: https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
+[gmail-url]: mailto:jvillegasl@uni.pe
+
+<!--  -->
+
+[linkedin-shield]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
+[linkedin-url]: https://www.linkedin.com/in/vlja/
+
+<!--  -->
+
+[React]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://react.dev/
+
+<!--  -->
+
+[Tailwind]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[Tailwind-url]: https://tailwindcss.com/
+
+<!--  -->
+
+[Typescript]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+[Typescript-url]: https://www.typescriptlang.org/
+
+<!--  -->
+
+[Vite]: https://img.shields.io/badge/Vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=yellow
+[Vite-url]: https://vitejs.dev/
